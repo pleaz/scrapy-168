@@ -8,7 +8,8 @@
 import scrapy
 
 
-class Hotels168Item(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class HotelItem(scrapy.Item):
+    id = scrapy.Field()
+    name = scrapy.Field()
+    address = scrapy.Field()
+    price = scrapy.Field()

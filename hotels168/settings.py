@@ -14,12 +14,17 @@ BOT_NAME = 'hotels168'
 SPIDER_MODULES = ['hotels168.spiders']
 NEWSPIDER_MODULE = 'hotels168.spiders'
 
+MONGODB_URI = 'localhost:27017'
+MONGODB_DATABASE = '168com'
+MONGODB_COLLECTION = 'hotels'
+
+DOWNLOAD_TIMEOUT = 360
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'hotels168 (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -36,7 +41,7 @@ ROBOTSTXT_OBEY = True
 #COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
-#TELNETCONSOLE_ENABLED = False
+TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
 #DEFAULT_REQUEST_HEADERS = {
@@ -64,9 +69,10 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'hotels168.pipelines.Hotels168Pipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'hotels168.pipelines.MongoPipeline': 300,
+    'hotels168.pipelines.DuplicatesPipeline': 800,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
